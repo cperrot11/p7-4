@@ -6,13 +6,12 @@ use App\Entity\Phone;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class AppFixtures extends Fixture
+class PhoneFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         for ($cpt=1;$cpt<=10;$cpt++){
             $phone = new Phone();
-            $phone->setCreatedAt(new \DateTime());
             $phone->setDescription("description ".$cpt);
             $marque = array("Apple","Samsung","Nokia","Pixel","Xioami","Honor");
             $choixMarque = array_rand($marque);
