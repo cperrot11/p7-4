@@ -14,12 +14,12 @@ class AuthController extends AbstractController
     {
         $em = $this->getDoctrine()->getManager();
 
-        $name = $request->request->get('name');
+        $username = $request->request->get('username');
         $password = $request->request->get('password');
         $email = $request->request->get('email');
 
         $customer = new Customer();
-        $customer->setName($name);
+        $customer->setName($username);
         $customer->setPassword($encoder->encodePassword($customer, $password));
         $customer->setEmail($email);
         $em->persist($customer);
