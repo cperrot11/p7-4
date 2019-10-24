@@ -2,6 +2,3 @@ api_platform:
     resource: .
     type: api_platform
     prefix: /bilemo
-
-api_login_check:
-    path: /api/login_check

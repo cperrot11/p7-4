@@ -4,9 +4,23 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     collectionOperations={"get"={"normalizationContext"={"groups"={"users:read"}}}
+ *      ,"post"},
+ *     itemOperations={
+ *          "get"={"normalizationContext"={"groups"={"user:get"}}
+ *          },
+ *          "delete"
+ *     },
+ *     attributes={
+ *           "pagination_items_per_page"=5,
+ *           "formats"={"jsonld", "json", "html", "jsonhal", "csv"={"text/csv"}}
+ *     },
+ *     normalizationContext={"groups"={"users:read","user:get"}},
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  */
 class User
@@ -20,16 +34,19 @@ class User
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users:read","user:get"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"users:read","user:get"})
      */
     private $email;
 
     /**
      * @ORM\Column(type="datetime")
+     * @Groups({"user:get"})
      */
     private $createdAt;
 

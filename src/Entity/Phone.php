@@ -14,16 +14,13 @@ use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\RangeFilter;
 
 /**
  * @ApiResource(
- *     collectionOperations={"get"},
  *     itemOperations={"get"},
+ *     collectionOperations={"get"},
+ *     normalizationContext={"groups"="phone_listing:read"},
  *     attributes={
  *           "pagination_items_per_page"=5,
  *           "formats"={"jsonld", "json", "html", "jsonhal", "csv"={"text/csv"}}
  *     },
- *     normalizationContext={"groups"={
- *      "phone_listing:read",
- *      "phone_listing_lite:read"
- *      }},
  * )
  * @ApiFilter(SearchFilter::class, properties={"marque":"partial"})
  * @ApiFilter(RangeFilter::class, properties={"price"})
@@ -41,13 +38,13 @@ class Phone
     /**
      * @Assert\NotBlank(message="Le nom du téléphone ne doit pas être vide.")
      * @ORM\Column(type="string", length=255)
-     * @Groups({"phone_listing_lite:read"})
+     * @Groups("phone_listing:read")
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
-     * @Groups({"phone_listing_lite:read"})
+     * @Groups("phone_listing:read")
      */
     private $marque;
 
@@ -59,13 +56,12 @@ class Phone
 
     /**
      * @ORM\Column(type="datetime")
-     * @Groups({"phone_listing_lite:read"})
      */
     private $createdAt;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
-     * @Groups({"phone_listing_lite:read"})
+     * @Groups("phone_listing:read")
      */
     private $price;
 

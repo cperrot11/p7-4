@@ -7,9 +7,12 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
  * @ApiResource(
+ *     collectionOperations={},
+ *     itemOperations={},
  *     attributes={
  *           "pagination_items_per_page"=5,
  *           "formats"={"jsonld", "json", "html", "jsonhal", "csv"={"text/csv"}}
@@ -45,6 +48,7 @@ class Customer implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, unique=true)
+     * @Groups("users:read")
      */
     private $name;
 
