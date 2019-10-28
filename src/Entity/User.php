@@ -4,18 +4,29 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\Annotation\Groups;
+
+
+// *          ,"post"={
+// *              "path"="/create/user",
+// *              "method"="POST",
+// *              "controller"=CreateUserController::class}
+// *     },
 
 /**
  * @ApiResource(
- *     collectionOperations={"get"={"normalizationContext"={"groups"={"users:read"}}}
- *      ,"post"},
- *     itemOperations={
- *          "get"={"normalizationContext"={"groups"={"user:get"}}
- *          },
+ *     collectionOperations=
+ *     {
+ *          "get"={"normalizationContext"={"groups"={"users:read"}}},"post"
+ *     },
+ *     itemOperations=
+ *     {
+ *          "get"={"normalizationContext"={"groups"={"user:get"}}},
  *          "delete"
  *     },
- *     attributes={
+ *     attributes=
+ *     {
  *           "pagination_items_per_page"=5,
  *           "formats"={"jsonld", "json", "html", "jsonhal", "csv"={"text/csv"}}
  *     },
