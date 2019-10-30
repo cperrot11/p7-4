@@ -12,8 +12,6 @@ class CustomerSetUserListener
     public function __construct(Security $security)
     {
         $this->security = $security;
-        dump('test');
-        die();
     }
 
     public function prePersist(User $user)
@@ -21,7 +19,7 @@ class CustomerSetUserListener
         if ($user->getCustomerId()) {
             return;
         }
-
+        /* Filed the Customer logged */
         if ($this->security->getUser()) {
             $user->setCustomerId($this->security->getUser());
         }

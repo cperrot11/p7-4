@@ -7,13 +7,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Security;
 use Symfony\Component\Serializer\Annotation\Groups;
 
-
-// *          ,"post"={
-// *              "path"="/create/user",
-// *              "method"="POST",
-// *              "controller"=CreateUserController::class}
-// *     },
-
 /**
  * @ApiResource(
  *     collectionOperations=
@@ -33,6 +26,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"users:read","user:get"}},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
+ * @ORM\EntityListeners({"App\Doctrine\CustomerSetUserListener"})
  */
 class User
 {
