@@ -11,11 +11,11 @@ use Symfony\Component\Serializer\Annotation\Groups;
  * @ApiResource(
  *     collectionOperations=
  *     {
- *          "get"={"normalizationContext"={"groups"={"users:read"}}},"post"
+ *          "get"={"normalization_context"={"groups"={"users:read"}}},"post"
  *     },
  *     itemOperations=
  *     {
- *          "get"={"normalizationContext"={"groups"={"user:get"}}},
+ *          "get"={"normalization_context"={"groups"={"user:get"}}},
  *          "delete"
  *     },
  *     attributes=
@@ -24,6 +24,7 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *           "formats"={"jsonld", "json", "html", "jsonhal", "csv"={"text/csv"}}
  *     },
  *     normalizationContext={"groups"={"users:read","user:get"}},
+ *     cacheHeaders={"no-store"},
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\EntityListeners({"App\Doctrine\CustomerSetUserListener"})
