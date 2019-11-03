@@ -4,7 +4,8 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
-use Symfony\Component\Security\Core\Security;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
@@ -26,6 +27,8 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *     normalizationContext={"groups"={"users:read","user:get"}},
  *     cacheHeaders={"no-store"},
  * )
+ * @UniqueEntity("email", message="Bilemo : This email is already used.")
+ * @UniqueEntity("name", message="Bilemo : This name is already used.")
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\EntityListeners({"App\Doctrine\CustomerSetUserListener"})
  */
@@ -39,13 +42,23 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=50, unique=true)
+     * @Assert\NotBlank()
+     * @Assert\Length(
+     *     min=3,
+     *     max=50,
+     *     maxMessage="Bilemo : Name must be 3 characters to 50."
+     * )
      * @Groups({"users:read","user:get"})
      */
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
+     * @Assert\Email(
+     *     message = "Bilemo : The email '{{ value }}' is not a valid email.",
+     *     checkMX = true
+     * )
      * @Groups({"users:read","user:get"})
      */
     private $email;
@@ -60,7 +73,7 @@ class User
      * @ORM\ManyToOne(targetEntity="App\Entity\Customer", inversedBy="users")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $customerId;
+    private $customer;
 
     public function __construct()
     {
@@ -108,14 +121,14 @@ class User
         return $this;
     }
 
-    public function getCustomerId(): ?Customer
+    public function getCustomer(): ?Customer
     {
-        return $this->customerId;
+        return $this->customer;
     }
 
-    public function setCustomerId(?Customer $customerId): self
+    public function setCustomer(?Customer $customer): self
     {
-        $this->customerId = $customerId;
+        $this->customer = $customer;
 
         return $this;
     }

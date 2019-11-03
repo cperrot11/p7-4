@@ -35,7 +35,7 @@ final class CustomerUserExtension implements QueryCollectionExtensionInterface, 
         }
 
         $rootAlias = $queryBuilder->getRootAliases()[0];
-        $queryBuilder->andWhere(sprintf('%s.customerId = :current_user', $rootAlias));
+        $queryBuilder->andWhere(sprintf('%s.customer = :current_user', $rootAlias));
         $queryBuilder->setParameter('current_user', $customer);
     }
 }
