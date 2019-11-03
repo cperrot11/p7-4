@@ -34,7 +34,7 @@ security:
         bilemo:
             pattern:  ^/bilemo
             stateless: true
-            anonymous: false
+            anonymous: true
             provider: entity_provider
             guard:
                  authenticators:
@@ -51,4 +51,5 @@ security:
     access_control:
         - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/bilemo/docs, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/bilemo, roles: IS_AUTHENTICATED_FULLY }

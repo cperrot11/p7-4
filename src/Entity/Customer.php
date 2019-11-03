@@ -31,11 +31,6 @@ class Customer implements UserInterface
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=180, unique=false)
-     */
-    private $uuid;
-
-    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -53,7 +48,7 @@ class Customer implements UserInterface
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, unique=true)
      */
     private $email;
 
@@ -63,7 +58,7 @@ class Customer implements UserInterface
     private $createdAt;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="customerId", orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\User", mappedBy="customer", orphanRemoval=true)
      */
     private $users;
 
@@ -71,24 +66,11 @@ class Customer implements UserInterface
     {
         $this->users = new ArrayCollection();
         $this->createdAt = (new \DateTime());
-        $this->uuid = 1;
     }
 
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getUuid(): ?string
-    {
-        return $this->uuid;
-    }
-
-    public function setUuid(string $uuid): self
-    {
-        $this->uuid = $uuid;
-
-        return $this;
     }
 
     /**
@@ -200,7 +182,7 @@ class Customer implements UserInterface
     {
         if (!$this->users->contains($user)) {
             $this->users[] = $user;
-            $user->setCustomerId($this);
+            $user->setCustomer($this);
         }
 
         return $this;
@@ -211,8 +193,8 @@ class Customer implements UserInterface
         if ($this->users->contains($user)) {
             $this->users->removeElement($user);
             // set the owning side to null (unless already changed)
-            if ($user->getCustomerId() === $this) {
-                $user->setCustomerId(null);
+            if ($user->getCustomer() === $this) {
+                $user->setCustomer(null);
             }
         }
 

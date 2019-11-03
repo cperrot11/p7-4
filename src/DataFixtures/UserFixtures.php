@@ -23,7 +23,7 @@ class UserFixtures extends Fixture implements DependentFixtureInterface
             $user->setEmail("user".$cpt."@gmail.com");
             $rand_customer = rand(1,2);
             $customer = $this->getReference('Customer'.$rand_customer);
-            $user->setCustomerId($customer);
+            $user->setCustomer($customer);
 
             $manager->persist($user);
         }

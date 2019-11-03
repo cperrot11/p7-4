@@ -16,12 +16,12 @@ class CustomerSetUserListener
 
     public function prePersist(User $user)
     {
-        if ($user->getCustomerId()) {
+        if ($user->getCustomer()) {
             return;
         }
         /* Filed the Customer logged */
         if ($this->security->getUser()) {
-            $user->setCustomerId($this->security->getUser());
+            $user->setCustomer($this->security->getUser());
         }
     }
 }
