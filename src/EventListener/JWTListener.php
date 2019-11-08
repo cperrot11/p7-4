@@ -37,11 +37,10 @@ class JWTListener
     public function onJWTNotFound(JWTNotFoundEvent $event)
     {
         $data = [
-            'status'  => '403 Forbidden',
+            'status'  =>  '401 Forbidden',
             'message' => 'Bilemo: Missing token',
         ];
-
-        $response = new JsonResponse($data, 403);
+        $response = new JsonResponse($data, 401);
         $event->setResponse($response);
     }
     /**
