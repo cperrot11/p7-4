@@ -16,6 +16,12 @@
             "./src/Entity/.gitignore"
         ]
     },
+    "blackfire/php-sdk": {
+        "version": "v1.19.2"
+    },
+    "composer/ca-bundle": {
+        "version": "1.2.4"
+    },
     "doctrine/annotations": {
         "version": "1.0",
         "recipe": {

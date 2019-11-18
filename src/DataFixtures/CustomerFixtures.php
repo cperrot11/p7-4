@@ -5,7 +5,6 @@ namespace App\DataFixtures;
 use App\Entity\Customer;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
-use Doctrine\ORM\Id\UuidGenerator;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CustomerFixtures extends Fixture

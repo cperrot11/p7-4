@@ -6,6 +6,7 @@
         "ext-ctype": "*",
         "ext-iconv": "*",
         "api-platform/api-pack": "^1.2",
+        "blackfire/php-sdk": "^1.19",
         "doctrine/doctrine-migrations-bundle": "^2.0",
         "lexik/jwt-authentication-bundle": "^2.6",
         "nesbot/carbon": "^2.25",
