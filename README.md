@@ -3,7 +3,7 @@ Version 1.0.0
 
 This project is a REST API to allow Bilemo partners to display their mobile phones catalog.
 This API was built with **Symfony 4.3.5**.
-It's the 7th [OpenClassRooms](https://openclassrooms.com/) PHP/Symfony Developer project. A working documentation demo can be found [here](https://127.0.0.1:8000/bilemo/docs).
+It's the 7th [OpenClassRooms](https://openclassrooms.com/) PHP/Symfony Developer project.
 
 <a href="https://codeclimate.com/github/cperrot11/p7-4/maintainability"><img src="https://api.codeclimate.com/v1/badges/324468d5e21e8896c519/maintainability" /></a>
 
@@ -66,7 +66,7 @@ Now you'ready to enjoy! Refer to documentation to use API endpoints according to
 
 ### Documentation
 This API project is as documented as possible, so you can find:
-- a full documentation of API methods by adding `/doc` at the end of your API URI.
+- a full documentation of API methods can be found [here](https://127.0.0.1:8000/docs)..
 - and some [diagrams](https://github.com/cperrot11/p7-4/tree/master/diagrams)
 
 
